@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Watch Ví dụ - Theo dõi tuổi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input {
+      padding: 8px;
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .warning {
+      color: red;
+      font-weight: bold;
+    }
+
+    .ok {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>Nhập tuổi của bạn:</h2>
+    <input type="number" v-model="age" />
+
+    <p v-if="age">Tuổi của bạn là: {{ age }}</p>
+
+    <p v-if="warningMessage" class="warning">{{ warningMessage }}</p>
+    <p v-else class="ok">✅ Tuổi hợp lệ</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="js.js"></script>
+ 
+</body>
+</html>

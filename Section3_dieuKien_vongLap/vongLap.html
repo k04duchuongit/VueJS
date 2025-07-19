@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vòng lặp với v-for</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Danh sách trái cây</h2>
+    <ul>
+      <li v-for="(fruit, index) in fruits" :key="index">
+        {{ index + 1 }}. {{ fruit }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          fruits: ['Táo', 'Cam', 'Xoài', 'Dưa hấu']
+        };
+      }
+    });
+    app.mount('#app');
+  </script>
+</body>
+</html>

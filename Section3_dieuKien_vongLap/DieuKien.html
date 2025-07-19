@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Điều kiện trong Vue</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Hiển thị học lực</h2>
+    <input type="number" v-model="score" placeholder="Nhập điểm" />
+
+    <p v-if="score >= 90">Học lực: Giỏi</p>
+    <p v-else-if="score >= 70">Học lực: Khá</p>
+    <p v-else-if="score >= 50">Học lực: Trung bình</p>
+    <p v-else>Học lực: Yếu</p>
+
+    <button @click="showInfo = !showInfo">Ẩn/Hiện thông báo</button>
+    <p v-show="showInfo">📢 Đây là một thông báo có thể ẩn/hiện!</p>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          score: 0,
+          showInfo: true
+        };
+      }
+    });
+    app.mount('#app');
+  </script>
+</body>
+</html>

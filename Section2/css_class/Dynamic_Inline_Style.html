@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Kiểu Dáng Động & Nội Tuyến</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 100px;
+      margin-top: 20px;
+      border-radius: 10px;
+      line-height: 100px;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    .red {
+      background-color: crimson;
+    }
+
+    .blue {
+      background-color: steelblue;
+    }
+
+    .rounded {
+      border-radius: 50px;
+    }
+
+    .shadow {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>Kiểu dáng động và nội tuyến</h2>
+
+    <!-- Điều khiển -->
+    <button @click="toggleColor">Đổi màu</button>
+    <button @click="toggleStyle">Bật/tắt viền & bóng</button>
+    <input type="range" min="14" max="40" v-model="fontSize" />
+
+    <!-- Phần tử áp dụng class và style động -->
+    <div
+      class="box"
+      :class="[boxColor, { rounded: isRounded, shadow: isShadow }]"
+      :style="{ fontSize: fontSize + 'px' }"
+    >
+      Hello Vue!
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          isRed: true,
+          isRounded: false,
+          isShadow: false,
+          fontSize: 18
+        };
+      },
+      computed: {
+        boxColor() {
+          return this.isRed ? 'red' : 'blue';
+        }
+      },
+      methods: {
+        toggleColor() {
+          this.isRed = !this.isRed;
+        },
+        toggleStyle() {
+          this.isRounded = !this.isRounded;
+          this.isShadow = !this.isShadow;
+        }
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

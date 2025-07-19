@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Computed vs Method</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 300px;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .note {
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>Computed vs Methods trong Vue</h2>
+
+    <input type="text" v-model="firstName" placeholder="Họ">
+    <input type="text" v-model="lastName" placeholder="Tên">
+
+    <p>💡 Từ data: {{ firstName }} {{ lastName }}</p>
+
+    <p>🧠 Computed: {{ fullName }}</p>
+    <p class="note">(chỉ tính lại khi firstName hoặc lastName đổi)</p>
+
+    <p>🔁 Method: {{ getFullName() }}</p>
+    <p class="note">(gọi lại mỗi lần giao diện render)</p>
+
+    <button @click="logTime">⏱ Ghi log thời gian render</button>
+    <p class="note">(Mỗi lần bấm sẽ log vào console → để thấy method chạy lại)</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          firstName: 'Duc',
+          lastName: 'Huong'
+        };
+      },
+      computed: {
+        fullName() {
+          console.log('📌 computed fullName chạy');
+          return this.firstName + ' ' + this.lastName;
+        }
+      },
+      methods: {
+        getFullName() {
+          console.log('🔄 method getFullName chạy');
+          return this.firstName + ' ' + this.lastName;
+        },
+        logTime() {
+          console.log('🕒 Render tại:', new Date().toLocaleTimeString());
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
